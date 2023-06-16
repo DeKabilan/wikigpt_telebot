@@ -8,4 +8,4 @@ RUN python3 -m pip install -r /bot/requirements.txt
 
 EXPOSE 5000
 
-CMD ["python","/yt/main.py"]
+CMD ["python","/bot/main.py"]
