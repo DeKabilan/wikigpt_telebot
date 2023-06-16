@@ -77,8 +77,9 @@ def sendres(message):
 
 
 while True:
-    try:
-        bot.polling()
-    except Exception:
-        print(Exception())
-        time.sleep(5)
+    bot.polling()
+    # try:
+    #     bot.polling()
+    # except Exception:
+    #     print(Exception())
+    #     time.sleep(5)
