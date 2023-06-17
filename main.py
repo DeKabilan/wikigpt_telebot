@@ -4,6 +4,7 @@ import time
 from bs4 import BeautifulSoup as bs
 import requests
 sresults=[]
+results=''
 links=[]
 
 bot = telebot.TeleBot("5983765325:AAHcQ33r6WuWrxYReZONwLkVQHZHOm2q4rw")
@@ -71,6 +72,7 @@ def sendres(message):
     link=message.text
     sresults.clear()
     sresults.clear()
+    results.clear()
     search(link)
     bot.delete_message(message.chat.id,message.message_id)
     bot.send_message(message.chat.id,link,reply_markup= markup_inline())
