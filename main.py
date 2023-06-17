@@ -6,6 +6,7 @@ import requests
 sresults=[]
 results=''
 links=[]
+id=''
 
 bot = telebot.TeleBot("5983765325:AAHcQ33r6WuWrxYReZONwLkVQHZHOm2q4rw")
 
@@ -69,9 +70,10 @@ def search(parameter):
 
 @bot.message_handler(func=lambda msg: msg)
 def sendres(message):
+    id=message.chat.id
+    sresults.clear()
+    links.clear()
     link=message.text
-    sresults.clear()
-    sresults.clear()
     search(link)
     bot.delete_message(message.chat.id,message.message_id)
     bot.send_message(message.chat.id,link,reply_markup= markup_inline())
@@ -81,5 +83,5 @@ while True:
     try:
         bot.polling()
     except Exception:
-        print(Exception())
+        bot.send_message(id,"Something's Wrong Try Again Later")
         time.sleep(5)
