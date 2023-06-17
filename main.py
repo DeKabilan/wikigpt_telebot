@@ -72,7 +72,6 @@ def sendres(message):
     link=message.text
     sresults.clear()
     sresults.clear()
-    results.clear()
     search(link)
     bot.delete_message(message.chat.id,message.message_id)
     bot.send_message(message.chat.id,link,reply_markup= markup_inline())
