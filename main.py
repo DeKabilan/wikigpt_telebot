@@ -6,7 +6,7 @@ import requests
 sresults=[]
 results=''
 links=[]
-id=''
+
 
 bot = telebot.TeleBot("5983765325:AAHcQ33r6WuWrxYReZONwLkVQHZHOm2q4rw")
 
