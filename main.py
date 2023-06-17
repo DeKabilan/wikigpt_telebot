@@ -20,7 +20,10 @@ def results(link):
     url = requests.get(link)
     soup=bs(url.content,'lxml')
     results = soup.findAll('p')
-    return results[1].text+"\n"+results[2].text
+    if len(results)<2:
+        return results[1].text+"\n"+results[2].text
+    else:
+        return results[1].text
 
 
 
@@ -29,16 +32,17 @@ def callback_query(call):
     link = call.message.text
     if call.data == "0":
         curl=links[0]
-        bot.send_message(call.message.chat.id,"-----"+sresults[0]+"-----"+"\n"+results(curl))
+        bot.send_message(call.message.chat.id,"-----"+str(sresults[0])+"-----"+"\n"+results(curl))
     if call.data == "1":
         curl=links[1]
-        bot.send_message(call.message.chat.id,"-----"+sresults[1]+"-----"+"\n"+results(curl))
+        bot.send_message(call.message.chat.id,"-----"+str(sresults[1])+"-----"+"\n"+results(curl))
     if call.data == "2":
         curl=links[2]
-        bot.send_message(call.message.chat.id,"------"+sresults[2]+"-----"+"\n"+results(curl))
+        bot.send_message(call.message.chat.id,"------"+str(sresults[2])+"-----"+"\n"+results(curl))
     if call.data == "3":
         curl=links[3]
-        bot.send_message(call.message.chat.id,"-----"+sresults[3]+"-----"+"\n"+results(curl))
+        bot.send_message(call.message.chat.id,"-----"+str(sresults[3])+"-----"+"\n"+results(curl))
+    bot.delete_message(call.message.chat.id,call.message.message_id)
 
 def markup_inline():
     markup = InlineKeyboardMarkup()
@@ -70,7 +74,6 @@ def search(parameter):
 
 @bot.message_handler(func=lambda msg: msg)
 def sendres(message):
-    id=message.chat.id
     sresults.clear()
     links.clear()
     link=message.text
@@ -83,5 +86,4 @@ while True:
     try:
         bot.polling()
     except Exception:
-        bot.send_message(id,"Something's Wrong Try Again Later")
         time.sleep(5)
