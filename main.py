@@ -8,7 +8,7 @@ results=''
 links=[]
 
 
-bot = telebot.TeleBot("Your-Bot-Token-Goes-Here")
+bot = telebot.TeleBot("5983765325:AAHcQ33r6WuWrxYReZONwLkVQHZHOm2q4rw")
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
